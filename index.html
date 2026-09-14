@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mirchi — TFC Screening | 16th September</title>
+<style>
+  :root{
+    --ash: #0c0a09;
+    --ash-2: #17130f;
+    --ash-3: #1e1712;
+    --smoke: #cfc7bd;
+    --smoke-dim: #948b80;
+    --blood: #9a1414;
+    --blood-bright: #d21f1f;
+    --ember: #e8a33d;
+    --line: rgba(207,199,189,0.14);
+  }
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--ash);
+    color: var(--smoke);
+    font-family: 'Oswald', 'Arial Narrow', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x:hidden;
+  }
+  @font-face{ font-family:'Oswald'; src: local('Oswald'); }
+  img{ max-width:100%; display:block; }
+
+  .grain{
+    pointer-events:none;
+    position:fixed; inset:0; z-index:60;
+    opacity:0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+  }
+
+  ::selection{ background: var(--blood-bright); color:#fff; }
+
+  /* NAV */
+  header{
+    position: fixed; top:0; left:0; right:0; z-index:40;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 18px 5vw;
+    background: linear-gradient(to bottom, rgba(12,10,9,0.9), transparent);
+    transition: background .35s ease, border-color .35s ease, padding .3s ease;
+    border-bottom: 1px solid transparent;
+  }
+  header.solid{
+    background: rgba(10,8,7,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+    padding: 13px 5vw;
+  }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .brand img{ height:32px; width:auto; filter: brightness(0) invert(1); opacity:0.95; }
+  .brand span{ font-size:13px; letter-spacing:0.14em; color: var(--smoke-dim); text-transform:uppercase; }
+  header nav{ display:flex; align-items:center; }
+  header nav a{
+    position:relative;
+    color: var(--smoke); text-decoration:none; font-size:14px; letter-spacing:0.08em;
+    margin-left:32px; text-transform:uppercase; opacity:0.85; transition: opacity .2s, color .2s;
+    padding-bottom:3px;
+  }
+  header nav a:not(.book-nav)::after{
+    content:""; position:absolute; left:0; right:100%; bottom:0; height:1px;
+    background: var(--blood-bright); transition: right .25s ease;
+  }
+  header nav a:not(.book-nav):hover::after{ right:0; }
+  header nav a:hover{ opacity:1; color:#fff; }
+  header nav a.book-nav{
+    border:1px solid var(--blood); padding:8px 18px; border-radius:2px;
+  }
+  header nav a.book-nav:hover{ background: var(--blood-bright); border-color: var(--blood-bright); color:#fff; }
+
+  /* HERO */
+  .hero{
+    position:relative; height:100svh; min-height:600px;
+    display:flex; align-items:flex-end;
+    overflow:hidden;
+  }
+  .hero video{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; object-position:center center;
+    filter: contrast(1.08) brightness(0.88) saturate(1.05);
+    transform: scale(1.02);
+  }
+  .hero::before{
+    content:""; position:absolute; inset:0; z-index:1;
+    background:
+      radial-gradient(ellipse 90% 60% at 30% 100%, rgba(90,10,10,0.16), transparent 60%),
+      linear-gradient(to top, var(--ash) 0%, rgba(12,10,9,0.25) 32%, rgba(12,10,9,0.32) 100%),
+      linear-gradient(to right, rgba(12,10,9,0.5) 0%, rgba(12,10,9,0.05) 48%, transparent 62%, rgba(12,10,9,0.22) 100%);
+  }
+  .hero-content{
+    position:relative; z-index:2;
+    text-shadow: 0 2px 14px rgba(0,0,0,0.55);
+    width:100%;
+    padding: 0 5vw 8vh;
+    display:flex; flex-direction:column; align-items:flex-start; gap: 22px;
+  }
+  .presents{
+    font-size:12px; letter-spacing:0.35em; text-transform:uppercase;
+    color: var(--smoke-dim);
+    opacity:0; animation: fadeUp .7s ease .1s forwards;
+  }
+  .title-logo{
+    width: min(560px, 72vw);
+    filter: drop-shadow(0 6px 34px rgba(154,20,20,0.55));
+    opacity:0;
+    animation: flickerIn 1.1s ease .35s forwards;
+  }
+  @keyframes flickerIn{
+    0%{ opacity:0; filter: drop-shadow(0 6px 34px rgba(154,20,20,0.55)) brightness(2); }
+    18%{ opacity:1; }
+    22%{ opacity:0.3; }
+    28%{ opacity:1; }
+    40%{ opacity:0.7; }
+    46%{ opacity:1; filter: drop-shadow(0 6px 34px rgba(154,20,20,0.55)) brightness(1.3); }
+    100%{ opacity:1; filter: drop-shadow(0 6px 34px rgba(154,20,20,0.55)) brightness(1); }
+  }
+  @keyframes fadeUp{
+    from{ opacity:0; transform: translateY(14px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+  .tagline{
+    font-size: clamp(13px, 1.6vw, 16px);
+    letter-spacing:0.06em;
+    color: var(--smoke);
+    max-width: 46ch;
+    line-height:1.5;
+    border-left: 2px solid var(--blood);
+    padding-left: 16px;
+    opacity:0; animation: fadeUp .7s ease .6s forwards;
+  }
+  .hero-meta{
+    display:flex; flex-wrap:wrap; gap: 26px 42px;
+    margin-top: 6px;
+    opacity:0; animation: fadeUp .7s ease .8s forwards;
+  }
+  .hm-item{ display:flex; flex-direction:column; gap:4px; }
+  .hm-label{ font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color: var(--smoke-dim); }
+  .hm-value{ font-size: clamp(16px,2vw,20px); font-weight:600; letter-spacing:0.02em; color:#fff; }
+  .hm-value em{ color: var(--ember); font-style:normal; }
+
+  .cta-row{
+    display:flex; gap:16px; flex-wrap:wrap; margin-top: 10px;
+    opacity:0; animation: fadeUp .7s ease 1s forwards;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding: 15px 30px;
+    font-size:14px; letter-spacing:0.14em; text-transform:uppercase; font-weight:600;
+    text-decoration:none; cursor:pointer; border-radius:2px;
+    transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+  }
+  .btn:hover{ transform: translateY(-2px); }
+  .btn-primary{
+    background: var(--blood-bright); color:#fff; border:1px solid var(--blood-bright);
+    box-shadow: 0 0 0 0 rgba(210,31,31,0.5);
+    animation: pulseGlow 2.6s ease-in-out infinite;
+  }
+  .btn-primary:hover{ background:#e42727; animation-play-state: paused; box-shadow: 0 4px 24px rgba(210,31,31,0.45); }
+  @keyframes pulseGlow{
+    0%,100%{ box-shadow: 0 0 0 0 rgba(210,31,31,0.35); }
+    50%{ box-shadow: 0 0 0 8px rgba(210,31,31,0); }
+  }
+  .btn-ghost{
+    background:transparent; color: var(--smoke); border:1px solid var(--line);
+  }
+  .btn-ghost:hover{ border-color: var(--smoke-dim); }
+  .scroll-cue{
+    position:absolute; right: 5vw; bottom: 26px; z-index:2;
+    writing-mode: vertical-rl; font-size:11px; letter-spacing:0.2em; color: var(--smoke-dim);
+    display:flex; align-items:center; gap:10px; text-transform:uppercase;
+  }
+  .scroll-cue::after{ content:""; width:1px; height:38px; background: var(--smoke-dim); opacity:0.5; animation: scrollLine 2s ease-in-out infinite; }
+  @keyframes scrollLine{ 0%,100%{ transform: scaleY(1); opacity:0.5;} 50%{ transform: scaleY(0.5); opacity:0.9; } }
+
+  /* MARQUEE TICKER */
+  .ticker{
+    position:relative; overflow:hidden;
+    background: var(--blood-bright);
+    border-bottom: 1px solid rgba(0,0,0,0.25);
+    white-space:nowrap;
+  }
+  .ticker-track{
+    display:inline-flex; align-items:center;
+    animation: marquee 26s linear infinite;
+    will-change: transform;
+  }
+  .ticker-track span{
+    display:inline-flex; align-items:center;
+    padding: 10px 0;
+    font-size:13px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase;
+    color:#1a0505;
+  }
+  .ticker-track span::after{ content:"\2726"; margin: 0 28px; font-size:11px; opacity:0.6; }
+  @keyframes marquee{ from{ transform: translateX(0); } to{ transform: translateX(-50%); } }
+
+  /* SECTIONS */
+  section{ padding: 90px 5vw; position:relative; }
+  .section-label{
+    font-size:11px; letter-spacing:0.28em; text-transform:uppercase;
+    color: var(--blood-bright); margin-bottom:14px;
+  }
+  h2{
+    font-size: clamp(28px, 4vw, 44px);
+    margin: 0 0 30px; font-weight:700; letter-spacing:-0.01em;
+    color:#fff;
+  }
+  .reveal{ opacity:0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform: translateY(0); }
+
+  /* DETAILS GRID */
+  .details{ background: var(--ash-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .detail-grid{
+    display:grid; grid-template-columns: repeat(auto-fit,minmax(190px,1fr));
+    gap: 0;
+    border: 1px solid var(--line);
+  }
+  .detail-cell{
+    padding: 28px 24px; border-right:1px solid var(--line); border-bottom:1px solid var(--line);
+    transition: background .25s ease, border-color .25s ease;
+  }
+  .detail-cell:hover{
+    background: linear-gradient(160deg, rgba(154,20,20,0.14), transparent 70%);
+    border-color: rgba(210,31,31,0.4);
+  }
+  .detail-cell:last-child{ border-right:none; }
+  .detail-cell .num{ font-size:11px; color: var(--smoke-dim); letter-spacing:0.16em; }
+  .detail-cell .val{ font-size: clamp(18px,2vw,24px); color:#fff; margin-top:10px; font-weight:600; }
+  .detail-cell .sub{ font-size:13px; color: var(--smoke-dim); margin-top:6px; line-height:1.5; }
+
+  /* RULES */
+  .rules{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items:start; }
+  @media (max-width:860px){ .rules{ grid-template-columns:1fr; } }
+  .rules ol{ margin:0; padding-left: 22px; }
+  .rules li{ margin-bottom:18px; line-height:1.6; color: var(--smoke); }
+  .rules li::marker{ color: var(--blood-bright); font-weight:700; }
+  .poster-frame{
+    border:1px solid var(--line); padding:10px; background: var(--ash-2);
+    position:relative;
+  }
+  .poster-frame::before{
+    content:""; position:absolute; top:-1px; left:-1px; width:26px; height:26px;
+    border-top:2px solid var(--blood-bright); border-left:2px solid var(--blood-bright);
+  }
+  .poster-frame::after{
+    content:""; position:absolute; bottom:-1px; right:-1px; width:26px; height:26px;
+    border-bottom:2px solid var(--blood-bright); border-right:2px solid var(--blood-bright);
+  }
+  .poster-frame img{ width:100%; }
+
+  /* CLUB / FOOTER CTA */
+  .club-strip{
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:24px;
+    border-top:1px solid var(--line);
+  }
+  .club-strip .left{ display:flex; align-items:center; gap:18px; }
+  .club-strip img{ height:46px; width:auto; filter: brightness(0) invert(1); opacity:0.9; }
+  .club-strip p{ margin:0; color: var(--smoke-dim); font-size:14px; max-width:40ch; }
+
+  footer{
+    padding: 36px 5vw 48px;
+    border-top:1px solid var(--line);
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;
+  }
+  footer span{ font-size:12px; color: var(--smoke-dim); letter-spacing:0.05em; }
+
+  #book{ scroll-margin-top: 90px; }
+  .book-box{
+    border:1px solid var(--line); background:
+      radial-gradient(ellipse 60% 100% at 50% 0%, rgba(154,20,20,0.16), transparent 70%),
+      var(--ash-2);
+    padding: 56px 5vw; text-align:center;
+  }
+  .book-box h2{ margin-bottom:14px; }
+  .book-box p{ color: var(--smoke-dim); max-width:52ch; margin: 0 auto 30px; line-height:1.6; }
+
+  @media (max-width:640px){
+    header{ padding:14px 5vw; }
+    header nav a:not(.book-nav){ display:none; }
+    .hero-meta{ gap:18px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header id="site-header">
+  <div class="brand">
+    <img src="assets/tfc_logo.png" alt="The Filmmakers Club">
+    <span>The Filmmakers Club</span>
+  </div>
+  <nav>
+    <a href="#details">Details</a>
+    <a href="#rules">Rules</a>
+    <a href="#book" class="book-nav">Book Now</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <video autoplay muted loop playsinline poster="assets/poster.png">
+    <source src="assets/bg_video_web.mp4" type="video/mp4">
+  </video>
+  <div class="hero-content">
+    <div class="presents">GITAM Student Life &amp; The Filmmakers Club Present</div>
+    <img class="title-logo" src="assets/mirchi_title.png" alt="Mirchi">
+    <p class="tagline">A special campus screening — blood, fire, and vengeance on the big screen. One afternoon. One hall. Limited seats.</p>
+    <div class="hero-meta">
+      <div class="hm-item">
+        <span class="hm-label">Date</span>
+        <span class="hm-value">16<em>th</em> September</span>
+      </div>
+      <div class="hm-item">
+        <span class="hm-label">Time</span>
+        <span class="hm-value">12:00 — 4:00 PM</span>
+      </div>
+      <div class="hm-item">
+        <span class="hm-label">Venue</span>
+        <span class="hm-value">Purna Hall</span>
+      </div>
+      <div class="hm-item">
+        <span class="hm-label">Capacity</span>
+        <span class="hm-value">130 Seats</span>
+      </div>
+    </div>
+    <div class="cta-row">
+      <a href="#book" class="btn btn-primary">Book Your Seat</a>
+      <a href="#details" class="btn btn-ghost">Screening Details</a>
+    </div>
+  </div>
+  <div class="scroll-cue">Scroll</div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-track" id="ticker-track">
+    <span>MIRCHI · TFC SCREENING · 16TH SEPTEMBER · PURNA HALL · 130 SEATS · MAX 2 TICKETS PER BOOKING ·</span>
+    <span>MIRCHI · TFC SCREENING · 16TH SEPTEMBER · PURNA HALL · 130 SEATS · MAX 2 TICKETS PER BOOKING ·</span>
+  </div>
+</div>
+
+<section class="details" id="details">
+  <div class="reveal">
+    <div class="section-label">Screening Details</div>
+    <h2>Everything you need to know</h2>
+  </div>
+  <div class="detail-grid reveal">
+    <div class="detail-cell">
+      <div class="num">01</div>
+      <div class="val">16th September</div>
+      <div class="sub">Screening day</div>
+    </div>
+    <div class="detail-cell">
+      <div class="num">02</div>
+      <div class="val">12 PM – 4 PM</div>
+      <div class="sub">Doors open, screening window</div>
+    </div>
+    <div class="detail-cell">
+      <div class="num">03</div>
+      <div class="val">Purna Hall</div>
+      <div class="sub">GITAM Campus</div>
+    </div>
+    <div class="detail-cell">
+      <div class="num">04</div>
+      <div class="val">130</div>
+      <div class="sub">Total seating capacity</div>
+    </div>
+    <div class="detail-cell">
+      <div class="num">05</div>
+      <div class="val">Waitlist</div>
+      <div class="sub">Opens once seats are full</div>
+    </div>
+  </div>
+</section>
+
+<section class="rules" id="rules">
+  <div class="reveal">
+    <div class="section-label">Booking Rules</div>
+    <h2>Before you book</h2>
+    <ol>
+      <li><strong>Two tickets max.</strong> Each booking allows a maximum of 2 tickets — book for yourself and one guest.</li>
+      <li><strong>Confirmation by mail.</strong> Once your booking is submitted, you'll receive a confirmation email. Hold on to it — it's your entry pass.</li>
+      <li><strong>Waiting list.</strong> Purna Hall seats 130. Once we're full, further bookings move to the waiting list and will be notified if seats open up.</li>
+      <li><strong>Arrive on time.</strong> Seats are first-come, first-served within your confirmed slot between 12 PM and 4 PM on 16th September.</li>
+    </ol>
+  </div>
+  <div class="poster-frame reveal">
+    <img src="assets/poster.png" alt="Mirchi screening poster">
+  </div>
+</section>
+
+<section id="book">
+  <div class="book-box reveal">
+    <div class="section-label" style="justify-content:center; display:flex;">Reserve Your Seat</div>
+    <h2>Book Now</h2>
+    <p>Booking opens through our Google Form. Tap below to reserve — max 2 tickets per booking, confirmation sent by email.</p>
+    <a href="#" id="book-now-btn" class="btn btn-primary" target="_blank" rel="noopener">Book Now</a>
+  </div>
+</section>
+
+<section class="club-strip">
+  <div class="left">
+    <img src="assets/tfc_logo.png" alt="TFC logo">
+    <p>The Filmmakers Club is GITAM's home for cinema — screenings, discussions, and student filmmaking, in partnership with GITAM Student Life.</p>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 The Filmmakers Club · GITAM University</span>
+  <span>TFC Screenings</span>
+</footer>
+
+<script>
+  // Nav solidifies on scroll
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('solid', window.scrollY > 40);
+  }, { passive:true });
+
+  // Scroll-reveal sections (one orchestrated fade-up each, not per-card)
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

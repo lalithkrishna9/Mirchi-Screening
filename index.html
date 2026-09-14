@@ -282,7 +282,9 @@
 
   @media (max-width:640px){
     header{ padding:14px 5vw; }
+    .brand span{ display:none; }
     header nav a:not(.book-nav){ display:none; }
+    header nav a.book-nav{ padding:8px 14px; font-size:12px; margin-left:0; }
     .hero-meta{ gap:18px 28px; }
   }
 </style>
@@ -304,7 +306,7 @@
 </header>
 
 <section class="hero">
-  <video autoplay muted loop playsinline poster="assets/poster.png">
+  <video autoplay muted loop playsinline preload="auto" poster="assets/poster.png">
     <source src="assets/bg_video_web.mp4" type="video/mp4">
   </video>
   <div class="hero-content">

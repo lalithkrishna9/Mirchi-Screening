@@ -285,7 +285,19 @@
     .brand span{ display:none; }
     header nav a:not(.book-nav){ display:none; }
     header nav a.book-nav{ padding:8px 14px; font-size:12px; margin-left:0; }
-    .hero-meta{ gap:18px 28px; }
+    .hero{ align-items:center; }
+    .hero::before{
+      background:
+        radial-gradient(ellipse 120% 70% at 20% 55%, rgba(90,10,10,0.22), transparent 65%),
+        linear-gradient(to top, var(--ash) 0%, rgba(12,10,9,0.35) 26%, rgba(12,10,9,0.3) 100%),
+        linear-gradient(160deg, rgba(12,10,9,0.9) 0%, rgba(12,10,9,0.62) 42%, rgba(12,10,9,0.2) 62%, rgba(12,10,9,0.55) 100%);
+    }
+    .hero-content{ padding: 84px 6vw 6vh; gap:16px; }
+    .presents{ font-size:10.5px; letter-spacing:0.24em; }
+    .title-logo{ width: min(420px, 62vw); }
+    .tagline{ font-size:13px; max-width:34ch; }
+    .hero-meta{ gap:16px 26px; margin-top:2px; }
+    .cta-row{ margin-top:4px; }
   }
 </style>
 </head>
